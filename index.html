@@ -3,21 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Analytics</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Responsive Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-      body {
-        background-color: #34495e;
-        color: #ffffff;
-      }
-
-      .adhi {
-        background-color: #34495e;
+          .adhi {
+        background-color: #252830;
         border: none;
       }
 
       .adhi :hover {
         background-color: #527495;
+      }
+
+      .list-title :hover{
+        background-color: #252830;
       }
 
       .adhi-title {
@@ -26,117 +31,674 @@
       }
 
       .list-group-item {
-        background-color: #34495e;
+        border-color:#34495e;
+        background-color: #252830;
         color: #ffffff;
       }
 
       .badge-primary {
-        background-color: #34495e;
+        background-color: #252830;
       }
-
+        .h6-negative-margin{
+            margin-bottom: -1rem;
+        }
+        .chart-title{
+            color:#999;
+        }
+ .form-control {
+            background-color: #434857;
+            color: white; /* Change text color to white */
+            border: none; /* Remove border */
+            padding: 10px; /* Add some padding for better appearance */
+        }
+.input-group-text {
+            background-color: #434857; /* Match the background color of the input */
+            border: none; /* Remove border */
+        }
+        .input-group-text i {
+            color: white; /* Change the icon color to white */
+        }
+         .leaf-icon {
+                        color: white; /* Change icon color to white */
+                        font-size: 24px; /* Optional: change the size of the icon */
+                    }
+        .nav-title{
+            color:#51586a;
+        }
+        #startDate {
+    background-color: #434857;
+    color: #ffffff;
+}
+#startDate::-moz-placeholder {
+    color: white;
+}
+#startDate::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Inverts the color of the calendar icon */
+}
+        body {
+            background-color: #252830;
+            color: #ffffff;
+        }
+        .card {
+            background-color: #252830;
+            border: none;
+        }
+        .chart-container canvas {
+        font-size: 10rem;
+        }
+        .card-body {
+            padding: 1rem;
+        }
+        .chart-container {
+            position: relative;
+            height: 240px;
+        }
+        .side-nav {
+            background-color: #252830;
+            height: 100vh;
+            position: fixed;
+        }
+        .content {
+            margin-left: 20%;
+        }
+        @media (max-width: 768px) {
+            .content {
+                margin-left: 0;
+            }
+            .side-nav {
+                height: auto;
+                position: static;
+                width: 100%;
+            }
+        }
+        @media (min-width: 768px) {
+            .side-nav {
+                flex: 0 0 20%;
+                max-width: 20%;
+            }
+        }
+        .stat-card {
+            margin-bottom: 1rem;
+        }
+        .stat-card .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1rem;
+            text-align: center;
+        }
+        .stat-card .card-title {
+            font-size: 1.2rem;
+        }
+        .stat-card .display-4 {
+            font-size: 2.5rem;
+        }
+        .stat-card p {
+            margin-bottom: 0;
+        }
+        .stat-card .icon-up {
+            color: #28a745;
+        }
+        .stat-card .icon-down {
+            color: #dc3545;
+        }
+        .stat-card.page-views {
+            background-color: #1BC98E;
+        }
+        .stat-card.downloads {
+            background-color: #E64759;
+        }
+        .stat-card.sign-ups {
+            background-color: #9F86FF;
+        }
+        .stat-card.other-downloads {
+            background-color: #E4D836;
+        }
+        .stats-column {
+        background-color: #2d2d2d;
+        color: #cfcfcf;
+        padding: 5px;
+      }
+      
+      .stats-column h2 {
+        text-align: center;
+        color: #e0e0e0;
+        font-weight: bold;
+      }
+      .stats-column ul {
+        list-style-type: none;
+        font-weight: bold;
+        padding: 2px;
+      }
+      .stats-column ul li {
+        margin: 10px 0;
+        padding: 10px;
+      }
+      .stats-column ul li:hover {
+        background-color: #464749;
+      }
+           .divider {
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+      line-height: 0.1em;
+      margin: 5px 0 5px;
+    }
+.selected-menu-item{
+    background: #1997C6;
+}
+    .divider span {
+    background-color: #252830;
+    padding: 0 10px;
+    }
+        hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(248, 243, 243, 0.97);
+}
     </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-6">
-              <h5 class="adhi-title">Countries</h5>
-              <div class="adhi">
-                <ul class="list-group">
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    United States
-                    <span class="badge badge-primary badge-pill">62.4%</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    India
-                    <span class="badge badge-primary badge-pill">15.0%</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    United Kingdom
-                    <span class="badge badge-primary badge-pill">5.0%</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Canada
-                    <span class="badge badge-primary badge-pill">5.0%</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Russia
-                    <span class="badge badge-primary badge-pill">4.5%</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Mexico
-                    <span class="badge badge-primary badge-pill">2.3%</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Spain
-                    <span class="badge badge-primary badge-pill">1.7%</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    France
-                    <span class="badge badge-primary badge-pill">1.5%</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    South Africa
-                    <span class="badge badge-primary badge-pill">1.4%</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Japan
-                    <span class="badge badge-primary badge-pill">1.2%</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <h5 class="adhi-title">Most visited pages</h5>
-              <div class="adhi">
-                <ul class="list-group">
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    / (Logged out)
-                    <span class="badge badge-primary badge-pill">3,929,481</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    / (Logged in)
-                    <span class="badge badge-primary badge-pill">1,143,393</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    /tour
-                    <span class="badge badge-primary badge-pill">938,287</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    /features/something
-                    <span class="badge badge-primary badge-pill">749,393</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    /features/another-thing
-                    <span class="badge badge-primary badge-pill">695,912</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    /users/username
-                    <span class="badge badge-primary badge-pill">501,938</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    /page-title
-                    <span class="badge badge-primary badge-pill">392,842</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    /some/page-slug
-                    <span class="badge badge-primary badge-pill">298,183</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    /another/directory/and/page-title
-                    <span class="badge badge-primary badge-pill">193,129</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    /one-more/page/directory/file-name
-                    <span class="badge badge-primary badge-pill">93,382</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+    <!-- Responsive Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-md-none">
+        <a class="navbar-brand" href="#">Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Overview</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Order History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Fluid Layout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Icon Nav</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Toolkit Docs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Bootstrap Docs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Light UI</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Example Modal</a>
+                </li>
+            </ul>
         </div>
-    </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Side Navigation -->
+            <div class="col-md-3 side-nav d-none d-md-block">
+
+                <h3 class="mt-4 mb-4 text-center"><br></h3>
+                <ul class="nav flex-column">
+                 <li class="nav-item">
+                    <div class="form-outline" data-mdb-input-init>
+                        <div class="input-group">
+                            <input type="search" class="form-control" placeholder="Search" aria-label="Search" />
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                        <a class="nav-link nav-title" href="#">DASHBOARDS</a>
+                    </li>
+                    <li class="nav-item selected-menu-item">
+                        <a class="nav-link text-white" href="#">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Order History</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Fluid Layout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Icon Nav</a>
+                    </li>
+                </ul>
+                <ul class="nav flex-column mt-4">
+                    <li class="nav-item">
+                        <a class="nav-link nav-title" href="#">MORE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Toolkit Docs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Bootstrap Docs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Light UI</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Example Modal</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9 content">
+                <div class="row mt-4">
+                    <div class="col-md-3">
+                        <h2 class="text-left mt-4">Overview</h2>
+                       
+                    </div>
+                    <div class="col-md-3">
+                     
+                    </div>
+                    <div class="col-md-3">
+                     
+                    </div>
+                    <div class="col-md-3"><br>
+<input id="startDate" class="form-control" type="date" />
+                    </div>
+                </div>
+                <hr/>
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="chart1"></canvas>
+                                </div>
+                                <h6 class="text-center mt-4 chart-title h6-negative-margin">Traffic</h6>
+                                <h5 class="text-center mt-4">New vs Returning</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="chart2"></canvas>
+                                </div>
+                                <h6 class="text-center mt-4 chart-title h6-negative-margin">Revenue</h6>
+                                <h5 class="text-center mt-4">New vs Recurring</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="chart3"></canvas>
+                                </div>
+                                <h6 class="text-center mt-4 chart-title h6-negative-margin">Traffic</h6>
+                                <h5 class="text-center mt-4">Direct vs Referrals</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<br><br>
+                </hr>
+                <div class="container" bis_skin_checked="1" style="
+                padding-right: 0px;
+                padding-left: 0px;
+            ">
+                                <div class="rowmt-4" bis_skin_checked="1">
+                                  <div class="col-md-12" bis_skin_checked="1" style="
+                padding-left: 0px;
+                padding-right: 0px;
+            ">
+                                    <div class="divider" bis_skin_checked="1">
+                                      <span class="divider-text">Quick Stats</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                  
+                <!-- Second Row: Cards -->
+                <div class="row mt-4">
+                    <div class="col-md-3">
+                        <div class="stat-card page-views mb-4">
+                            <div class="card-body text-left">
+                                <span>Page Views</span>
+                                <h2>1,293</h2>
+                                <canvas id="sparkline1" width="520" height="129" class="bri js-chart-drawn " data-chart="spark-line"  style="width: 100%; height: auto;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card downloads mb-4">
+                            <div class="card-body text-left">
+                                <span>Downloads</span>
+                                <h2>758</h2>
+                                <canvas id="sparkline2" width="520" height="129" class="bri js-chart-drawn" data-chart="spark-line"  style="width: 100%; height: auto;"></canvas>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card sign-ups mb-4">
+                            <div class="card-body text-left">
+                                <span>Sign-ups</span>
+                                <h2>1,293</h2>
+                                <canvas id="sparkline3" width="520" height="129" class="bri js-chart-drawn" data-chart="spark-line" style="width: 100%; height: auto;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card other-downloads mb-4">
+                            <div class="card-body text-left">
+                                <h2>758</h2>
+                                <span>Downloads</span>
+                                <canvas id="sparkline4" width="520" height="129" class="bri js-chart-drawn" data-chart="spark-line" style="width: 100%; height: auto;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <hr/>
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-md-6 ">
+                      <ul class="list-group">  <li class="list-group-item d-flex justify-content-between align-items-center list-title">
+                        Countries
+                      </li></ul>
+                      <div class="adhi">
+                        <ul class="list-group">
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            United States
+                            <span class="badge badge-primary badge-pill">62.4%</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            India
+                            <span class="badge badge-primary badge-pill">15.0%</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            United Kingdom
+                            <span class="badge badge-primary badge-pill">5.0%</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Canada
+                            <span class="badge badge-primary badge-pill">5.0%</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Russia
+                            <span class="badge badge-primary badge-pill">4.5%</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Mexico
+                            <span class="badge badge-primary badge-pill">2.3%</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Spain
+                            <span class="badge badge-primary badge-pill">1.7%</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            France
+                            <span class="badge badge-primary badge-pill">1.5%</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            South Africa
+                            <span class="badge badge-primary badge-pill">1.4%</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Japan
+                            <span class="badge badge-primary badge-pill">1.2%</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-group">  <li class="list-group-item d-flex justify-content-between align-items-center list-title">
+                            Most visited pages
+                          </li></ul>
+                      <div class="adhi">
+                        <ul class="list-group">
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            / (Logged out)
+                            <span class="badge badge-primary badge-pill">3,929,481</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            / (Logged in)
+                            <span class="badge badge-primary badge-pill">1,143,393</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            /tour
+                            <span class="badge badge-primary badge-pill">938,287</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            /features/something
+                            <span class="badge badge-primary badge-pill">749,393</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            /features/another-thing
+                            <span class="badge badge-primary badge-pill">695,912</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            /users/username
+                            <span class="badge badge-primary badge-pill">501,938</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            /page-title
+                            <span class="badge badge-primary badge-pill">392,842</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            /some/page-slug
+                            <span class="badge badge-primary badge-pill">298,183</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            /another/directory/and/page-title
+                            <span class="badge badge-primary badge-pill">193,129</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            /one-more/page/directory/file-name
+                            <span class="badge badge-primary badge-pill">93,382</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                </div>
+            </div>
+         <br>
+            
+
+              
+    <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+                var ctxSparkline = document.getElementById('sparkline1').getContext('2d');
+        var sparkline = new Chart(ctxSparkline, {
+          type: 'line',
+          data: {
+              labels: ['', '', '', '', '', '', ''],
+              datasets: [{
+                  data: [28, 68, 41, 43, 96, 45, 100],
+                  borderColor: '#FFFFFF',
+                  fill: false,
+                  lineTension: 0.1
+              }]
+          },
+  options: {
+    plugins: {
+      legend: {
+        display: false // Hide the legend
+      }
+    }
+  }
+          });
+        
+        var ctxSparkline2 = document.getElementById('sparkline2').getContext('2d');
+        var sparkline = new Chart(ctxSparkline2, {
+          type: 'line',
+          data: {
+              labels: ['', '', '', '', '', '', ''],
+              datasets: [{
+                  data: [28, 68, 41, 43, 96, 45, 100],
+                  borderColor: '#FFFFFF',
+                  fill: false,
+                  lineTension: 0.1
+              }]
+          },
+  options: {
+    plugins: {
+      legend: {
+        display: false // Hide the legend
+      }
+    }
+  }
+          });
+
+        var ctxSparkline3 = document.getElementById('sparkline3').getContext('2d');
+        var sparkline = new Chart(ctxSparkline3, {
+          type: 'line',
+          data: {
+              labels: ['', '', '', '', '', '', ''],
+              datasets: [{
+                  data: [28, 68, 41, 43, 96, 45, 100],
+                  borderColor: '#FFFFFF',
+                  fill: false,
+                  lineTension: 0.1
+              }]
+          },
+  options: {
+    plugins: {
+      legend: {
+        display: false // Hide the legend
+      }
+    }
+  }
+          });
+        
+        var ctxSparkline4 = document.getElementById('sparkline4').getContext('2d');
+        var sparkline4 = new Chart(ctxSparkline4, {
+          type: 'line',
+          data: {
+              labels: ['', '', '', '', '', '', ''],
+              datasets: [{
+                  data: [28, 68, 41, 43, 96, 45, 100],
+                  borderColor: '#FFFFFF',
+                  fill: false,
+                  lineTension: 0.1
+              }]
+          },
+  options: {
+    plugins: {
+      legend: {
+        display: false // Hide the legend
+      }
+    }
+  }
+          });
+
+
+        // Sample data
+        const data1 = {
+            datasets: [{
+                data: [130, 270], // Example values
+                backgroundColor: ['#1CA8DD', '#1BC98E'],
+            }]
+        };
+        const data2 = {
+            datasets: [{
+                data: [200, 300], // Example values
+                backgroundColor: ['#1CA8DD', '#1BC98E'],
+            }]
+        };
+        const data3 = {
+            datasets: [{
+                data: [150, 350], // Example values
+                backgroundColor: ['#1CA8DD', '#1BC98E'],
+            }]
+        };
+
+    const config1 = {
+    type: 'doughnut',
+    data: data1,
+    options: {
+        responsive: true,
+        plugins: {
+            title: {
+                legend: {
+                display: 'auto', // Show legends on hover
+                position: 'top',
+            },
+                display: true,
+                color: 'white', // Set title text color to white
+                font: {
+                    size: 16 // Set title font size to 16px
+                }
+            }
+        },
+        cutout: '80%',
+    },
+};
+        const config2 = {
+    type: 'doughnut',
+    data: data2,
+    options: {
+        responsive: true,
+        plugins: {
+            title: {
+                legend: {
+                display: 'auto', // Show legends on hover
+                position: 'top',
+            },
+                display: true,
+                color: 'white', // Set title text color to white
+                font: {
+                    size: 16 // Set title font size to 16px
+                }
+            }
+        },
+        cutout: '80%',
+    },
+};
+
+        const config3 = {
+    type: 'doughnut',
+    data: data3,
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: 'auto', // Show legends on hover
+                position: 'top',
+            },
+            title: {
+                display: true,
+                color: 'white', // Set title text color to white
+                font: {
+                    size: 16 // Set title font size to 16px
+                }
+            },
+            backgroundColor: 'transparent'
+        },
+        cutout: '80%',
+    },
+};
+        // Render the charts
+        window.onload = function() {
+            const ctx1 = document.getElementById('chart1').getContext('2d');
+            new Chart(ctx1, config1);
+
+            const ctx2 = document.getElementById('chart2').getContext('2d');
+            new Chart(ctx2, config2);
+
+            const ctx3 = document.getElementById('chart3').getContext('2d');
+            new Chart(ctx3, config3);
+        };
+    </script>
 </body>
 </html>
